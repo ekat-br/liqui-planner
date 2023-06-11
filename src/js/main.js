@@ -62,10 +62,23 @@ const haushaltsbuch = {
         `Bilanz ist positiv ${this.gesamtbilanz.bilanz >= 0}`
     );
   },
+  eintraege_sortieren() {
+    this.eintraege.sort(function (eintrag_a, eintrag_b) {
+      if (eintrag_a > eintrag_b) {
+        return -1;
+      } else if (eintrag_a < eintrag_b) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  },
+
   eintrag_hinzufuegen() {
     let weiterer_eintrag = true;
     while (weiterer_eintrag) {
       this.eintrag_erfassen();
+      this.eintraege_sortieren;
       this.eintraege_ausgeben();
       this.gesamtbilanz_erstellen();
       this.gesamtbilanz_ausgeben();
